@@ -7,6 +7,7 @@
      1. `OrchestratingPipeline` (configured to require `1.0` CPU), which for each request makes multiple calls to
      2. LLM-powered `TextGenerator` (configured to require `2.0` CPUs). This is one uses Ray Serve's dynamic batching feature.
    - deploys the Ray Serve app to the cluster
+   - makes a single client-request to the `OrchestratingPipeline` deployment
 2. Make observations at http://127.0.0.1:8265/:
    - observe that two deployments got scheduled on different nodes in the cluster
    - observe that `OrchestratingPipeline` received 1 request from the client which took 919.8ms
