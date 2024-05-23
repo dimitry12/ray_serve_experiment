@@ -14,6 +14,11 @@
    - observe that across 6 requests `TextGenerator` logged **2** LLM inference calls, with batch size 3 each
 3. `make stop_raycluster` to stop the Ray cluster.
 
+## Notes
+
+- Ray Serve uses Ray Core's primitives to enable cross-deployment communication (inter- and intra-node): it's RPC, with input and output parameters being objects managed by Ray in its store and replicated across nodes as necessary. [Medium article](https://medium.com/distributed-computing-with-ray/ray-for-the-curious-fa0e019e17d3) provides a good high level overview of Ray Core.
+- Compared to Ray Core's `@ray.remote`-actors and tasks, Ray Serve adds a number of conveniences for exposing the logic as HTTP API such as: dynamic batching, FastAPI integration, traffic-based Autoscaling. 
+
 ## TODO
 
-- [ ] what's the transport for cross-node communication when using deployment-handle composition in Ray Serve?
+- [x] what's the transport for cross-node communication when using deployment-handle composition in Ray Serve?
